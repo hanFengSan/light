@@ -59,8 +59,6 @@ android {
         compile 'io.reactivex:rxjava:1.1.0'
         compile 'com.trello:rxlifecycle:0.4.0'
         compile 'com.trello:rxlifecycle-components:0.4.0'
-        compile project(':nucleus')
-        compile project(':FlycoTabLayout')
         // Async Http Client Retrofit
         compile 'com.squareup.retrofit2:retrofit:2.0.1'
         compile 'com.squareup.retrofit2:converter-gson:2.0.1'
@@ -89,7 +87,7 @@ android {
         //zoomable scrollview
         compile 'com.lzy.widget:view-core:0.1.9'
         //swipe layout
-        compile "com.daimajia.swipelayout:library:1.2.0@aar"
+//        compile "com.daimajia.swipelayout:library:1.2.0@aar"
         //个推
         compile 'com.getui:sdk:2.9.0.0'
         compile 'com.android.support:support-v4:24.0.0'
@@ -111,4 +109,7 @@ android {
 
 dependencies {
     compile project(':hellocharts')
+    compile project(':swipelayout')
+    compile project(':nucleus')
+    compile project(':FlycoTabLayout')
 }
