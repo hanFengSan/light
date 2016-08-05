@@ -141,6 +141,12 @@ public class HFRankAdapter extends BaseHeaderFooterListAdapter<BangumiRank> {
             ButterKnife.bind(this, view);
             swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
             swipeLayout.addDrag(SwipeLayout.DragEdge.Left, bottomWrapper);
+            swipeLayout.addOnLayoutListener(new SwipeLayout.OnLayout() {
+                @Override
+                public void onLayout(SwipeLayout v) {
+
+                }
+            });
             swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
                 @Override
                 public void onClose(SwipeLayout layout) {

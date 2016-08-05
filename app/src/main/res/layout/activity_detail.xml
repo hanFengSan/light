@@ -67,7 +67,6 @@
                                 android:layout_height="120dp"
                                 android:contentDescription="@null"
                                 android:scaleType="centerCrop"
-                                android:src="@mipmap/re0"
                                 android:visibility="invisible"/>
 
                             <com.github.ybq.android.spinkit.SpinKitView

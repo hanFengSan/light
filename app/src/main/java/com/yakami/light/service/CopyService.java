@@ -13,8 +13,16 @@ import java.util.List;
 public class CopyService {
 
     public static String copyRank(DiscRank rank) {
-        String cRank = Tools.formatNumByChar(rank.getCurrentRank(), "*", 4);
-        String pRank = Tools.formatNumByChar(rank.getPreRank(), "*", 4);
+        String cRank ="";
+        if (rank.getCurrentRank() != 0)
+            cRank = Tools.formatNumByChar(rank.getCurrentRank(), "*", 4);
+        else
+            cRank = "----";
+        String pRank ="";
+        if (rank.getPreRank() != 0)
+            pRank = Tools.formatNumByChar(rank.getPreRank(), "*", 4);
+        else
+            pRank = "----";
         String result = String.format("%s/%s  (%dpt)  %s\n", cRank, pRank, rank.getPT(), rank.getName());
         return result;
     }

@@ -3,6 +3,7 @@ package com.yakami.light.service;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.yakami.light.DeviceManager;
 import com.yakami.light.R;
 import com.yakami.light.ServerAPI;
 import com.yakami.light.bean.BangumiInfo;
@@ -109,7 +110,7 @@ public class BangumiInfoService extends BaseService {
             if (tmpInfo.getVersion() >= mInfo.getVersion()) {
                 mInfo = tmpInfo;
                 if (Tools.isAvailableStr(mInfo.getCoverAddress()) && mInfo.getCover().length == 0) {
-                    setImageBytes(mInfo.getCoverAddress());
+                    setImageBytes(mInfo.getCoverAddress(), 100);
                     RxBus.getInstance().send(Event.EventType.BANGUMI_TEXT_INFO_GET, null);
                 } else if (mInfo.getCover().length > 0) {
                     RxBus.getInstance().send(Event.EventType.BANGUMI_TEXT_INFO_GET, null);
@@ -127,7 +128,7 @@ public class BangumiInfoService extends BaseService {
         ServerAPI.getBangumiInfoAPI()
                 .getSearchResult("utf-8", cleanName(mName) + " site:bangumi.tv")
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe((ResponseBody body) -> {
                     try {
                         mAddressList = getBGMCacheAddress(body.string());
@@ -191,7 +192,6 @@ public class BangumiInfoService extends BaseService {
                         RxBus.getInstance().send(Event.EventType.BANGUMI_TEXT_INFO_FAIL, null);
                     }
                 });
-
     }
 
     private void getData(String html) {
@@ -208,7 +208,7 @@ public class BangumiInfoService extends BaseService {
         for (Element tmp : tmpList) {
             if (tmp.tagName().equals("img")) {
                 mInfo.setCoverAddress(tmp.attr("src"));
-                setImageBytes(tmp.attr("src"));
+                setImageBytes(tmp.attr("src"), 100);
             }
         }
         //intro
@@ -226,7 +226,7 @@ public class BangumiInfoService extends BaseService {
         saveCache();
     }
 
-    private void setImageBytes(String src) {
+    private void setImageBytes(String src, int tryTimes) {
         ServerAPI.getBangumiInfoAPI()
                 .getBGMResult(src)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -241,8 +241,15 @@ public class BangumiInfoService extends BaseService {
                         e.printStackTrace();
                     }
                 }, throwable -> {
-                    throwable.printStackTrace();
-                    RxBus.getInstance().send(Event.EventType.BANGUMI_COVER_FAIL, null);
+                    if (tryTimes != 0) {
+                        final int tmp = tryTimes - 1;
+                        setImageBytes(src, tmp);
+                    } else {
+                        throwable.printStackTrace();
+                        RxBus.getInstance().send(Event.EventType.BANGUMI_COVER_FAIL, null);
+                        DeviceManager.copyToClipboard(throwable.toString());
+                        Tools.toast("错误信息已复制");
+                    }
                 });
     }
 

@@ -347,7 +347,7 @@ public class MainActivity extends BaseTransTabMainActivity
         }
 
         if (id == R.id.action_copy_visible_item) {
-            int start = mLayoutManager.findFirstCompletelyVisibleItemPosition();
+            int start = mLayoutManager.findFirstVisibleItemPosition();
             int end = mLayoutManager.findLastVisibleItemPosition();
             int pos = AppManager.getTabPos();
             List<DiscRank> list = new ArrayList<>();

@@ -57,6 +57,8 @@ public class PushService extends BaseService {
                                 if (!notDisturb())
                                     updateAll();
                             break;
+                        case "common_msg":
+
                     }
                 }, Throwable::printStackTrace);
     }
@@ -131,7 +133,7 @@ public class PushService extends BaseService {
             }
             //登顶
             if (ni.isTop()) {
-                if (dr.getCurrentRank() >= NotificationProfile.TOP && dr.getCurrentRank() != dr.getPreRank()) {
+                if (dr.getCurrentRank() == NotificationProfile.TOP && dr.getCurrentRank() != dr.getPreRank()) {
                     isQualified = true;
                     titleHelper.pushTitleCandidate(dr.getsName(), TYPE_TOP, 0);
                 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="4px"
         android:scaleType="fitXY"
-        android:src="@drawable/split_line_blue"
+        android:src="@drawable/split_line_grey"
         android:tint="@color/split_grey"/>
 
     <TextView
