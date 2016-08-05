@@ -1,0 +1,29 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+//        maven { url 'http://maven.oschina.net/content/groups/public/' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:2.1.2' //release使用
+        classpath 'com.android.tools.build:gradle:2.2.0-alpha6' //快速调试使用，5.0以下默认button selector有bug
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
+
+allprojects {
+    repositories {
+//        maven { url 'http://maven.oschina.net/content/groups/public/' }
+        jcenter()
+        mavenCentral()
+        maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
+        maven { url "https://jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
