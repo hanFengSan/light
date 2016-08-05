@@ -367,15 +367,22 @@ public class MainActivity extends BaseTransTabMainActivity
     }
 
     protected void checkUpdate() {
-        VersionService.getInstance().checkVersionUpdate();
+        //不是通知式更新
+        if (VersionService.getInstance().getVersion() == null) {
+            VersionService.getInstance().checkVersionUpdate();
 
-        RxBus.with(this)
-                .setEvent(Event.EventType.VERSION_DIALOG)
-                .setEndEvent(ActivityEvent.DESTROY)
-                .onNext(event -> {
-                    showDialog(event.getMessage());
-                })
-                .create();
+            RxBus.with(this)
+                    .setEvent(Event.EventType.VERSION_DIALOG)
+                    .setEndEvent(ActivityEvent.DESTROY)
+                    .onNext(event -> {
+                        showDialog(event.getMessage());
+                    })
+                    .create();
+        } else {
+            showDialog(VersionService.getInstance().getVersion());
+            VersionService.getInstance().setVersion(null);
+        }
+
     }
 
     protected void showDialog(Version version) {
@@ -383,8 +390,10 @@ public class MainActivity extends BaseTransTabMainActivity
         dialog.setTitle("有新版本！ v" + version.getVersion());
         dialog.setMessage(version.getIntro());
         dialog.setCancelable(true);
-        dialog.setPositiveButton("去下载", (dialogInterface, which) -> {
+        dialog.setPositiveButton("更新", (dialogInterface, which) -> {
             OpenUrl(version.getUrl());
+            Tools.toast("后台下载中");
+//            ApkUpdateUtils.download(this, version.getUrl(), getResources().getString(R.string.app_name));
         });
         dialog.show();
     }

@@ -2,6 +2,7 @@ package com.yakami.light.service;
 
 import com.yakami.light.BuildConfig;
 import com.yakami.light.ServerAPI;
+import com.yakami.light.bean.Version;
 import com.yakami.light.event.Event;
 import com.yakami.light.event.RxBus;
 import com.yakami.light.service.base.BaseService;
@@ -17,6 +18,7 @@ import rx.schedulers.Schedulers;
 public class VersionService extends BaseService {
 
     private static VersionService mInstance = new VersionService();
+    private Version version;
 
     private VersionService() {
     }
@@ -33,7 +35,7 @@ public class VersionService extends BaseService {
                 .subscribe(version -> {
                     float latestVersion = Float.valueOf(version.getVersion());
                     float currentVersion = Float.valueOf(BuildConfig.VERSION_NAME);
-                    if (latestVersion > currentVersion){
+                    if (latestVersion > currentVersion) {
                         Event event = new Event();
                         event.type = Event.EventType.VERSION_DIALOG;
                         event.message = version;
@@ -42,4 +44,11 @@ public class VersionService extends BaseService {
                 }, Throwable::printStackTrace);
     }
 
+    public Version getVersion() {
+        return version;
+    }
+
+    public void setVersion(Version version) {
+        this.version = version;
+    }
 }

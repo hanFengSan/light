@@ -208,7 +208,7 @@ public class BangumiInfoService extends BaseService {
         for (Element tmp : tmpList) {
             if (tmp.tagName().equals("img")) {
                 mInfo.setCoverAddress(tmp.attr("src"));
-                setImageBytes(tmp.attr("src"), 100);
+                setImageBytes(tmp.attr("src"), 10);
             }
         }
         //intro

@@ -124,7 +124,7 @@ public class NotificationService extends BaseService {
         save();
     }
 
-    public void pushNotification(NotificationText text) {
+    public void pushNotification(NotificationText text, boolean isCopyable) {
         final Notification.BigTextStyle bigTextStyle = new Notification.BigTextStyle(); // 建立BigTextStyle
         bigTextStyle.setBigContentTitle(text.getTitle()); // 當BigTextStyle顯示時，用BigTextStyle的setBigContentTitle覆蓋setContentTitle的設定
         bigTextStyle.bigText(text.getContent()); // 設定BigTextStyle的文字內容
@@ -150,8 +150,9 @@ public class NotificationService extends BaseService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setStyle(bigTextStyle)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .addAction(R.drawable.ic_content_copy_black_24dp, getRes().getString(R.string.copy), copyPIntent);
+                .setPriority(Notification.PRIORITY_HIGH);
+        if (isCopyable)
+            builder.addAction(R.drawable.ic_content_copy_black_24dp, getRes().getString(R.string.copy), copyPIntent);
         SettingProfile setting = AppManager.getSettingService().getProfile();
         if (setting.isHasSound())
             builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));

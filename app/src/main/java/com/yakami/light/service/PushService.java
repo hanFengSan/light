@@ -1,12 +1,15 @@
 package com.yakami.light.service;
 
+import com.google.gson.Gson;
 import com.yakami.light.AppManager;
 import com.yakami.light.ServerAPI;
+import com.yakami.light.bean.CommonMsg;
 import com.yakami.light.bean.DiscNotificationResult;
 import com.yakami.light.bean.DiscRank;
 import com.yakami.light.bean.NotificationItem;
 import com.yakami.light.bean.NotificationProfile;
 import com.yakami.light.bean.ServerResponse;
+import com.yakami.light.bean.Version;
 import com.yakami.light.service.base.BaseService;
 import com.yakami.light.utils.NumFlagBitUtils;
 import com.yakami.light.utils.Tools;
@@ -58,9 +61,28 @@ public class PushService extends BaseService {
                                     updateAll();
                             break;
                         case "common_msg":
-
+                            sendCommonMsg(response.getData());
+                            break;
+                        case "app_update":
+                            sendAppUpdate(response.getData());
+                            break;
                     }
                 }, Throwable::printStackTrace);
+    }
+
+    private void sendAppUpdate(String str) {
+        Gson gson = new Gson();
+        Version ver = gson.fromJson(str, Version.class);
+        VersionService.getInstance().setVersion(ver);
+        AppManager.getNotificationService().pushNotification(new NotificationService
+                .NotificationText("可用更新：v" + ver.getVersion(), ver.getIntro()), false);
+    }
+
+    private void sendCommonMsg(String str) {
+        Gson gson = new Gson();
+        CommonMsg msg = gson.fromJson(str, CommonMsg.class);
+        AppManager.getNotificationService().pushNotification(new NotificationService
+                .NotificationText(msg.getTitle(), msg.getContent()), false);
     }
 
 
@@ -169,7 +191,7 @@ public class PushService extends BaseService {
                     if (!Tools.isEmpty(mContent)) {
                         AppManager.getNotificationService()
                                 .pushNotification(new NotificationService
-                                        .NotificationText(titleHelper.getTitle(), mContent));
+                                        .NotificationText(titleHelper.getTitle(), mContent), true);
                     }
                 }, Throwable::printStackTrace);
     }
