@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by Yakami on 2016/8/5, enjoying it!
+ * 提供需要复制的内容的加工
  */
 
 public class CopyService {

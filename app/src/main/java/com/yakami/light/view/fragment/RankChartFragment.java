@@ -33,6 +33,7 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 /**
  * Created by Yakami on 2016/7/31, enjoying it!
+ * 自定义了一下helloCharts，这个fragment用于提供图表信息
  */
 
 public class RankChartFragment extends BaseFragment {

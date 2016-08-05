@@ -69,8 +69,6 @@ public class BangumiRankFragment extends BaseFragment {
     }
 
     public void refresh() {
-//        setRefreshState();
-//        mRefreshListener.getRemoteData();
         mAdapter.notifyDataSetChanged();
     }
 

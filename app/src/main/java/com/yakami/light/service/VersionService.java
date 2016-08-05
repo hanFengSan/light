@@ -11,6 +11,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by Yakami on 2016/8/5, enjoying it!
+ * 版本更新判断
  */
 
 public class VersionService extends BaseService {
@@ -40,20 +41,5 @@ public class VersionService extends BaseService {
                     }
                 }, Throwable::printStackTrace);
     }
-
-//    public void showDialog(final Version version) {
-//        AlertDialog.Builder dialog = new AlertDialog.Builder(AppManager.getContext());
-//        dialog.setTitle("有新版本！ v" + version.getVersion());
-//        dialog.setMessage(version.getIntro());
-//        dialog.setCancelable(true);
-//        dialog.setPositiveButton("去下载", (dialogInterface, which) -> {
-//            Event event = new Event();
-//            event.message = version.getUrl();
-//            RxBus.getInstance().send(event);
-//        });
-//        dialog.show();
-//
-//    }
-
 
 }

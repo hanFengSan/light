@@ -10,6 +10,7 @@ import com.yakami.light.utils.Tools;
 
 /**
  * Created by Yakami on 2016/7/30, enjoying it!
+ * 用于通知栏复制按钮使用
  */
 
 public class CopyReceiver extends BaseReceiver {

@@ -10,10 +10,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-/**
- * Created by thanatos on 15-9-25.
- * ####
- */
 public class CacheManager {
 
     /**

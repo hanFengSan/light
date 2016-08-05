@@ -5,11 +5,6 @@ import android.content.SharedPreferences;
 
 import com.yakami.light.AppManager;
 
-/**
- * SharePreference管理类, oop管理众多的首选项文件
- *
- * Created by thanatos on 16/2/2.
- */
 public class SharePreferenceManager {
 
     public static SharedPreferences getUser() {

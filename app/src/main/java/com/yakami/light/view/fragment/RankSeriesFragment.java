@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Yakami on 2016/8/2, enjoying it!
+ * 系列排名
  */
 
 public class RankSeriesFragment extends BaseFragment {

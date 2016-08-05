@@ -145,6 +145,7 @@ public class HFRankAdapter extends BaseHeaderFooterListAdapter<BangumiRank> {
                 @Override
                 public void onClose(SwipeLayout layout) {
                     //when the SurfaceView totally cover the BottomView.
+                    mIsSwiping = false;
                 }
 
                 @Override
@@ -161,6 +162,7 @@ public class HFRankAdapter extends BaseHeaderFooterListAdapter<BangumiRank> {
                 @Override
                 public void onOpen(SwipeLayout layout) {
                     //when the BottomView totally show.
+                    mIsSwiping = false;
                 }
 
                 @Override

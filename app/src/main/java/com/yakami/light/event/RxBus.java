@@ -21,11 +21,7 @@ import rx.subjects.Subject;
 public class RxBus {
 
     private static RxBus rxBus;
-    /**
-     * Subject同时充当了Observer和Observable的角色，Subject是非线程安全的，要避免该问题，需要将 Subject转换为一个
-     * SerializedSubject ，上述RxBus类中把线程非安全的PublishSubject包装成线程安全的Subject。
-     * PublishSubject只会把在订阅发生的时间点之后来自原始Observable的数据发射给观察者。
-     */
+
     private final Subject<Event<?>, Event<?>> _bus = new SerializedSubject<>(PublishSubject.create());
 
     private RxBus() {
@@ -133,12 +129,10 @@ public class RxBus {
             return null;
         }
 
-        //创建订阅
         public void create() {
             _create();
         }
 
-        //创建订阅
         public Subscription _create() {
             if (mFragLifecycleProvider != null) {
                 return RxBus.getInstance().toObservable()

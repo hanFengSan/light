@@ -28,6 +28,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * Created by Yakami on 2016/7/31, enjoying it!
+ * 主要用于爬去bangumi.tv的番剧介绍
  */
 
 public class BangumiInfoService extends BaseService {

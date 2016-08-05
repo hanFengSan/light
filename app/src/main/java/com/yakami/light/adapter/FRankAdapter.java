@@ -23,6 +23,8 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Yakami on 2016/8/2, enjoying it!
+ * 系列排名用
+ * 人太懒。直接复制粘贴了，有空再抽象吧= =
  */
 
 public class FRankAdapter extends BaseHeaderFooterListAdapter<BangumiRank> {

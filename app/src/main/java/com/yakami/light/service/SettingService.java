@@ -9,6 +9,7 @@ import static com.yakami.light.bean.SettingProfile.CACHE_NAME;
 
 /**
  * Created by Yakami on 2016/8/2, enjoying it!
+ * 相关设置的存储
  */
 
 public class SettingService extends BaseService {

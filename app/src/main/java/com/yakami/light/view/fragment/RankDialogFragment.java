@@ -31,6 +31,7 @@ import static com.yakami.light.bean.NotificationProfile.SWITCH_WATCH;
 
 /**
  * Created by Yakami on 2016/6/15, enjoying it!
+ * 长按弹出的dialog
  */
 
 public class RankDialogFragment extends BaseDialogFragment {

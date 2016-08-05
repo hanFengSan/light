@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Created by Yakami on 2016/8/1, enjoying it!
- * 提供识别番剧功能
+ * 提供番剧归类、识别功能
  */
 
 public class BangumiNameService extends BaseService {

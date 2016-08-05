@@ -67,8 +67,6 @@ public class LoadFragment extends BaseFragment {
     private void showFragment() {
         mLoadLayout.setVisibility(View.GONE);
         mContentLayout.setVisibility(View.VISIBLE);
-//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.view_content, mFragment, "view_content").commit();
     }
 
     public void setFragment(BaseFragment fragment) {

@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * Created by Yakami on 2016/8/1, enjoying it!
+ * 番剧排名信息的提供方和持有方
  */
 
 public class DiscRankService extends BaseService {

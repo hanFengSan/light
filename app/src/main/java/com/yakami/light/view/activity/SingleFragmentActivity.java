@@ -10,6 +10,7 @@ import com.yakami.light.utils.Tools;
 import com.yakami.light.view.activity.base.BaseHoldBackTabActivity;
 
 /**
+ * 使用例子：
  * Created by Yakami on 2016/5/21, enjoying it!
 *                     startActivity(IntentHelper.newInstance(mContext, SingleLoadFragmentActivity.class)
                                 .putString("class", UserInfoFragment.class.toString())
