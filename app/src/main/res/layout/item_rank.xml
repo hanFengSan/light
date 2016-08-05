@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tag="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="MissingPrefix">
+
+    <include layout="@layout/item_rank_mask"/>
+    <!-- Surface View -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:foreground="@drawable/ripple_blue_bg"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="4px"
+            android:scaleType="fitXY"
+            android:src="@drawable/split_line_blue"
+            android:tint="@color/split_grey"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.yakami.light.widget.TagView
+                android:id="@+id/tag_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="gone"
+                tag:bgColor="@color/PeterRiver"
+                tag:tagText="尼限"
+                tag:textColor="@android:color/white"
+                tag:textSize="8sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/serial_num"
+                    fontPath="fonts/gothicb.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="14dp"
+                    android:gravity="center"
+                    android:text="001"
+                    android:textColor="@color/text_grey_dark"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/rank"
+                    fontPath="fonts/gothicb.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="***1/***2"
+                    android:textColor="@color/text_dark_grey"
+                    android:textSize="12sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layoutDirection="rtl">
+
+                    <ImageView
+                        android:id="@+id/situation_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_arrow_upward_black_24dp"
+                        android:tint="@color/PeterRiver"/>
+
+                    <TextView
+                        android:id="@+id/situation"
+                        fontPath="fonts/gothicb.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="10"
+                        android:textColor="@color/text_dark_grey"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/sName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="22dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:layoutDirection="ltr"
+                        android:maxLines="2"
+                        android:text="超时空要塞Δ 01 ☆"
+                        android:textColor="@color/text_dark_grey"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</com.daimajia.swipe.SwipeLayout>

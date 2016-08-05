@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_user_info"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/user_info"/>
+    <item
+        android:id="@+id/nav_collection_list"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="@string/collection_list"/>
+    <item
+        android:id="@+id/nav_slideshow"
+        android:icon="@drawable/ic_assessment_black_24dp"
+        android:title="@string/test_record"/>
+
+    <item android:title="@string/other_options">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="@string/share"/>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_build_black_24dp"
+                android:title="@string/setting"/>
+        </menu>
+    </item>
+
+</menu>

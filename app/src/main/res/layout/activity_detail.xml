@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/cover_bg"
+                android:layout_width="match_parent"
+                android:layout_height="261dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/cover"/>
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurView"
+                android:layout_width="match_parent"
+                android:layout_height="261dp"
+                app:blurOverlayColor="@color/colorOverlay">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"/>
+
+            </eightbitlab.com.blurview.BlurView>
+
+
+            <LinearLayout
+                android:id="@+id/info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp">
+
+                            <ImageView
+                                android:id="@+id/cover"
+                                android:layout_width="84dp"
+                                android:layout_height="120dp"
+                                android:contentDescription="@null"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/re0"
+                                android:visibility="invisible"/>
+
+                            <com.github.ybq.android.spinkit.SpinKitView
+                                android:id="@+id/cover_spin_view"
+                                style="@style/SpinKitView.ThreeBounce"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerInParent="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:visibility="gone"
+                                app:SpinKit_Color="@android:color/white"/>
+
+                            <TextView
+                                android:id="@+id/tv_cover_error"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/load_cover_error"
+                                android:textColor="@color/translucent_text"
+                                android:textSize="11sp"
+                                android:visibility="gone"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/info_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="15dp"
+                            android:ellipsize="end"
+                            android:includeFontPadding="false"
+                            android:maxLines="9"
+                            android:text="\n\n\n\n\n\n\n\n\n"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.github.ybq.android.spinkit.SpinKitView
+                            android:id="@+id/loading_spin_view"
+                            style="@style/SpinKitView.ThreeBounce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            app:SpinKit_Color="@android:color/white"/>
+
+                        <TextView
+                            android:id="@+id/tv_log"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/loading_spin_view"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/get_search_result"
+                            android:textColor="@color/translucent_text"
+                            android:textSize="11sp"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:tabIndicatorColor="@android:color/white"
+                    app:tabIndicatorHeight="6dp"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@android:color/white"/>
+
+                <RelativeLayout
+                    android:id="@+id/view_pager_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="3000dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"/>
+
+                    <com.github.ybq.android.spinkit.SpinKitView
+                        android:id="@+id/view_pager_spin_view"
+                        style="@style/SpinKitView.ThreeBounce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="100dp"
+                        app:SpinKit_Color="@color/PeterRiver"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/app_bar_transparent"/>
+
+</FrameLayout>
+
+

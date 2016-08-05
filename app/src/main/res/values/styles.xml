@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="TransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/PeterRiver</item>
+        <item name="android:windowAnimationStyle">@style/SwipeWindowAnimTheme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- MaterialDrawer specific values -->
+        <item name="material_drawer_background">@color/white</item>
+    </style>
+
+    <style name="NormalTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/PeterRiver</item>
+        <item name="colorPrimaryDark">@color/BelizeHole</item>
+        <item name="colorAccent">@color/PeterRiver</item>
+        <item name="android:windowAnimationStyle">@style/SwipeWindowAnimTheme</item>
+    </style>
+
+    <style name="SearchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/PeterRiver</item>
+        <item name="colorPrimaryDark">@color/BelizeHole</item>
+        <item name="colorAccent">@color/PeterRiver</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@color/search_edit_cursor</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="android:windowAnimationStyle">@style/SwipeWindowAnimTheme</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="fullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="SwipeWindowAnimTheme" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_to_right</item>
+    </style>
+
+</resources>
+

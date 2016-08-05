@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="PeterRiver">#3498db</color>
+    <color name="BelizeHole">#2980b9</color>
+    <color name="softWhite">#fafafa</color>
+    <color name="black">#000000</color>
+    <color name="silver">#bdc3c7</color>
+    <color name="grey">#f6f6f6</color>
+
+    <color name="bg_grey">#EEEEEE</color>
+
+    <color name="text_grey">#666666</color>
+    <color name="text_red">#FF0000</color>
+    <color name="text_green">#009900</color>
+    <color name="text_grey_light">#BBBBBB</color>
+    <color name="text_grey_dark">#babbbd</color>
+    <color name="text_dark_grey">#5c6061</color>
+    <color name="text_translucent_dark">#B4000000</color>
+    <color name="text_hint">#32000000</color>
+
+    <color name="search_edit_cursor">#33b5e5</color>
+    <color name="search_edit_underline">#6fb2ef</color>
+
+    <color name="translucent_blue">#803498db</color>
+
+    <color name="translucent_black">#59000000</color>
+
+    <color name="white">#ffffff</color>
+    <color name="blue_purple">#6699ff</color>
+    <color name="soft_green">#1abc9c</color>
+
+    <color name="soft_black">#7a7a7a</color>
+
+    <color name="unselected_grey">#cfd0d2</color>
+    <color name="split_grey">#f7f7f7</color>
+
+    <color name="soft_red">#e74c3c</color>
+    <color name="soft_yellow">#f1c40f</color>
+
+    <color name="emerald">#40d47e</color>
+    <color name="soft_purple">#6633cc</color>
+
+    <color name="carrot">#e67e22</color>
+    <color name="sun_flower">#f1c40f</color>
+    <color name="turquoise">#1abc9c</color>
+
+    <color name="tmp1">#00CCFF</color>
+
+    <color name="colorOverlay">#32000000</color>
+
+    <color name="translucent_text">#c8ffffff</color>
+</resources>

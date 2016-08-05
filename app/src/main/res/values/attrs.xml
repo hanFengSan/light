@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TagView">
+        <attr name="tagText" format="string"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="reference|color"/>
+        <attr name="bgColor" format="reference|color"/>
+    </declare-styleable>
+
+    <declare-styleable name="LineAnnotationView">
+        <attr name="text" format="string"/>
+        <attr name="imageColor" format="reference|color"/>
+        <attr name="LATextSize" format="dimension"/>
+        <attr name="LATextColor" format="reference|color"/>
+    </declare-styleable>
+</resources>

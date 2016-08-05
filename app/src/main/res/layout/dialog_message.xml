@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:minHeight="150dp"
+              android:minWidth="200dp"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:text="@string/leave_message"
+        android:textColor="@color/PeterRiver"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/split_line_blue"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:paddingBottom="30dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入你的昵称"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:paddingTop="25dp"
+            android:textColorHint="@color/text_hint"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入留言内容"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:paddingTop="50dp"
+            android:textColorHint="@color/text_hint"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

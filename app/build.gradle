@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.yakami.light"
+        minSdkVersion 17
+        targetSdkVersion 24
+        versionCode 1
+        versionName "0.1"
+        //getui start
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "r4VubK1WoT9CaRwoa1rXh3",
+                GETUI_APP_KEY   : "ftvAtjyspO6XpNhSp6qUe6",
+                GETUI_APP_SECRET: "WlSrD7lOcn6xVlPHwwsYyA",
+                PACKAGE_NAME    : applicationId
+        ]
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+        }
+        //getui end
+        renderscriptTargetApi 23
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        testCompile 'junit:junit:4.12'
+        compile 'com.android.support:appcompat-v7:24.0.0'
+        compile 'com.android.support:design:24.0.0'
+        compile 'com.android.support:recyclerview-v7:24.0.0'
+        //bind layout
+        compile 'com.jakewharton:butterknife:7.0.1'
+        //html parser
+        compile 'org.jsoup:jsoup:1.9.2'
+        //cardView
+        compile 'com.android.support:cardview-v7:24.0.0'
+        compile 'com.android.support:palette-v7:24.0.0'
+        //percent layout
+        compile 'com.android.support:percent:24.0.0'
+        // Json Converter
+        compile 'org.immutables:gson:2.1.4'
+        compile 'org.apmem.tools:layouts:1.10@aar'
+        // Reactive Programming RxJava
+        compile 'io.reactivex:rxandroid:1.1.0'
+        compile 'io.reactivex:rxjava:1.1.0'
+        compile 'com.trello:rxlifecycle:0.4.0'
+        compile 'com.trello:rxlifecycle-components:0.4.0'
+        compile project(':nucleus')
+        compile project(':FlycoTabLayout')
+        // Async Http Client Retrofit
+        compile 'com.squareup.retrofit2:retrofit:2.0.1'
+        compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+        compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+        //roundedImageView
+        compile 'com.joooonho:selectableroundedimageview:1.0.1'
+        //Image loader
+        compile 'com.squareup.picasso:picasso:2.5.2'
+        //java8 stream api support
+        compile 'com.annimon:stream:1.0.9'
+        //RxBinding: RxJava binding APIs for Android UI widgets
+        compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+        compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
+        compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
+        compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
+        compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
+        // circle image view
+        compile 'de.hdodenhof:circleimageview:2.0.0'
+        //check Leak
+        debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+        releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+        testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+        //custom font
+        compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+        compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
+        //zoomable scrollview
+        compile 'com.lzy.widget:view-core:0.1.9'
+        //swipe layout
+        compile "com.daimajia.swipelayout:library:1.2.0@aar"
+        //个推
+        compile 'com.getui:sdk:2.9.0.0'
+        compile 'com.android.support:support-v4:24.0.0'
+        //spin kit
+        compile 'com.github.ybq:Android-SpinKit:1.0.5'
+        //material drawer
+        compile('com.mikepenz:materialdrawer:5.3.6@aar') { transitive = true }
+        //recyclerview animator
+        compile 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
+        //blur view
+        compile 'com.eightbitlab:blurview:1.1.2'
+        //justified textView
+        compile 'me.biubiubiu.justifytext:library:1.1'
+        //material design for pre-Lolipop Android
+        compile 'com.github.rey5137:material:1.2.4'
+    }
+
+}
+
+dependencies {
+    compile project(':hellocharts')
+}

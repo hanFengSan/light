@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="1. 排名数据power by anime-discs.com，番剧数据power by bangumi.tv\n2. 若出现bug，请到名作之壁吧我的发表帖子那里回帖反馈或者github那里提issue，谢谢\n 3. 这个只是0.1版，所以反馈什么的这些必须项还没加，后面 会有的:) "/>
+
+</LinearLayout>

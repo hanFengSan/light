@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.yakami.light">
+
+    <!--getui start-->
+    <!-- iBeancon功能所需权限 -->;
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- 个推3.0电子围栏功能所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--getui end-->
+
+    <!-- 网络权限申请-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- sd卡权限申请-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name="com.yakami.light.AppManager"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_light"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <activity
+            android:name="com.yakami.light.view.activity.SplashActivity"
+            android:label="@string/chs_name"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yakami.light.view.activity.MainActivity"
+            android:label="@string/chs_name"
+            android:theme="@style/TransparentTheme"/>
+        <activity
+            android:name="com.yakami.light.view.activity.SingleFragmentActivity"
+            android:label="single_fragment"
+            android:theme="@style/NormalTheme"/>
+        <activity
+            android:name="com.yakami.light.view.activity.SingleLoadFragmentActivity"
+            android:label="single_load_fragment"
+            android:theme="@style/NormalTheme"/>
+        <activity
+            android:name=".view.activity.DetailActivity"
+            android:label="detail"
+            android:theme="@style/TransparentTheme"/>
+
+        <!--getui start-->
+        <receiver
+            android:name="com.yakami.light.receiver.PushReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.r4VubK1WoT9CaRwoa1rXh3"/>
+            </intent-filter>
+        </receiver>
+        <!--getui end-->
+
+        <receiver
+            android:name="com.yakami.light.receiver.CopyReceiver"
+            android:exported="false"/>
+
+    </application>
+
+</manifest>
