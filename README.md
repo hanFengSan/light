@@ -8,7 +8,7 @@
 >* 还可以的UI
 
 ####图片预览
-![](https://github.com/hanFengSan/light/blob/master/image/1.jpg)
+<img src="https://github.com/hanFengSan/light/blob/master/image/1.jpg" width="600"/>
 
 ##主要的开源组件
 1. [Retrofit](https://github.com/square/retrofit) 一个非常棒的网络请求框架
