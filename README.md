@@ -8,7 +8,10 @@
 >* 还可以的UI
 
 ####图片预览
-<img src="https://github.com/hanFengSan/light/blob/master/image/1.jpg" width="600"/>
+<img src="https://github.com/hanFengSan/light/blob/master/image/1.jpg" width="400"/>
+<img src="https://github.com/hanFengSan/light/blob/master/image/2.jpg" width="400"/>
+<img src="https://github.com/hanFengSan/light/blob/master/image/3.jpg" width="400"/>
+<img src="https://github.com/hanFengSan/light/blob/master/image/4.jpg" width="400"/>
 
 ##主要的开源组件
 1. [Retrofit](https://github.com/square/retrofit) 一个非常棒的网络请求框架
@@ -31,3 +34,19 @@
 1. 本人技术和见识都有限，自己认为好的不一定是被认可的，可取的，我希望大家不吝赐教:)
 2. 我一直在自己的nexus上开发的，版本是6.0，回过头看了下4.X的样子，效果有点糟糕，比想象中的还要糟糕一点，所以最好用5.0以上的系统体验
 3. 没有正式完成前改动都会比较大，希望大家watch me, star me and fork me :)
+
+# License
+
+    Copyright (C) 2016 hanFengSan
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
