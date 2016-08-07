@@ -475,7 +475,10 @@ public class MainActivity extends BaseTransTabMainActivity
         if (Tools.isAvailableStr(mKeyword)) {
             List<DiscRank> result = new ArrayList<>();
             for (DiscRank item : list) {
-                if (item.getName().contains(mKeyword) || item.getsName().contains(mKeyword)) {
+                String name = item.getName().toLowerCase();
+                String sName = item.getsName().toLowerCase();
+                String lowerKeyword = mKeyword.toLowerCase();
+                if (name.contains(lowerKeyword) || sName.contains(lowerKeyword)) {
                     result.add(item);
                 }
             }
