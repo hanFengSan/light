@@ -399,18 +399,18 @@ public class HFRankAdapter extends BaseHeaderFooterListAdapter<BangumiRank> {
             super(view);
             ButterKnife.bind(this, view);
 
-            //为底部预先填充一个屏幕的高度，后期再动态调整
+            //为底部预先填充一个屏幕的高度
             ViewGroup.LayoutParams param = block.getLayoutParams();
             param.height = mActivityRef.getScreenSize().y;
             block.setLayoutParams(param);
-
+            //后期再动态调整高度
             RxBus.with(mActivityRef)
                     .setEvent(Event.EventType.SET_ABOVE_NAVIGATION_BAR)
                     .setEndEvent(ActivityEvent.DESTROY)
                     .onNext(event -> {
                         ViewGroup.LayoutParams params = block.getLayoutParams();
                         params.height = event.getMessage();
-                        block.setLayoutParams(params);
+                        block.post(() -> block.setLayoutParams(params));
                     }).create();
         }
     }

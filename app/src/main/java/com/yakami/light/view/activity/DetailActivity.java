@@ -75,10 +75,12 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
 
     private RankChartFragment mChartFragment;
     private RankSeriesFragment mSeriesFragment;
-    private BangumiInfoFragment mInfoFragment;
+    private BangumiInfoFragment mInfoFragment = new BangumiInfoFragment();
 
     private int mScrollCriticalVal;
     private List<Integer> mFragmentHeightList = new ArrayList<>();
+
+    private int mToolbarAlpha = 220;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,9 +124,6 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
 
                     mSeriesFragment = new RankSeriesFragment();
                     mSeriesFragment.setData(groupList);
-
-                    mInfoFragment = new BangumiInfoFragment();
-                    mInfoFragment.setData(mInfoService.getInfoBox());
 
                     addOnGetDominantColorListener(color -> mChartFragment.setLineColor(color));
 
@@ -200,9 +199,14 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
                 .setEvent(Event.EventType.BANGUMI_TEXT_INFO_GET)
                 .setEndEvent(ActivityEvent.DESTROY)
                 .onNext(event -> {
-                    showInfo();
+                    if (Tools.isAvailableStr(mInfoService.getcName()))
                     mInfoTextView.setText(String.format("译名：%s\n原名：%s\n简介：%s\n",
                             mInfoService.getcName(), mInfoService.getName(), mInfoService.getIntro()).trim().replace("　", ""));
+                    else
+                        mInfoTextView.setText(String.format("名称：%s\n简介：%s\n",
+                                mInfoService.getName(), mInfoService.getIntro()).trim().replace("　", ""));
+                    mInfoFragment.setData(mInfoService.getInfoBox());
+                    showInfo();
                 })
                 .create();
         //图片
@@ -215,6 +219,7 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
                     showCover();
                 })
                 .create();
+
         RxBus.with(this)
                 .setEvent(Event.EventType.BANGUMI_COVER_FAIL)
                 .setEndEvent(ActivityEvent.DESTROY)
@@ -222,9 +227,11 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
                 .create();
         //加载log
         RxBus.with(this)
-                .setEvent(Event.EventType.BANGUMI_SEARCH_RESULT_GET)
+                .setEvent(Event.EventType.BANGUMI_PARSE_INFO)
                 .setEndEvent(ActivityEvent.DESTROY)
-                .onNext(event -> mInfoLog.setText(mRes.getString(R.string.get_raw_data)))
+                .onNext(event -> {
+                    mInfoLog.setText(event.getMessage());
+                })
                 .create();
         RxBus.with(this)
                 .setEvent(Event.EventType.BANGUMI_SEARCH_RESULT_FAIL)
@@ -232,24 +239,10 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
                 .onNext(event -> {
                     mInfoLog.setText(mRes.getString(R.string.no_available_search_result));
                     mLoadingSpinView.setVisibility(View.GONE);
+                    mInfoFragment.showError();
                 })
                 .create();
-        RxBus.with(this)
-                .setEvent(Event.EventType.BANGUMI_NETWORK_OR_SERVER_ERROR)
-                .setEndEvent(ActivityEvent.DESTROY)
-                .onNext(event -> {
-                    mInfoLog.setText(mRes.getString(R.string.network_or_server_error));
-                    mLoadingSpinView.setVisibility(View.GONE);
-                })
-                .create();
-        RxBus.with(this)
-                .setEvent(Event.EventType.BANGUMI_TEXT_INFO_FAIL)
-                .setEndEvent(ActivityEvent.DESTROY)
-                .onNext(event -> {
-                    mInfoLog.setText(mRes.getString(R.string.load_raw_data_failed));
-                    mLoadingSpinView.setVisibility(View.GONE);
-                })
-                .create();
+
         mInfoService.start();
     }
 
@@ -322,9 +315,9 @@ public class DetailActivity extends BaseHoldBackTransparentTabActivity {
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if (scrollY > mScrollCriticalVal)
                     return;
-                int alpha = (int) (scrollY * (200f / mScrollCriticalVal));
-                mToolbar.getBackground().mutate().setAlpha(alpha > 200 ? 200 : alpha);
-                mStatusBarBg.getBackground().mutate().setAlpha(alpha > 200 ? 200 : alpha);
+                int alpha = (int) (scrollY * ((mToolbarAlpha * 1.0f) / mScrollCriticalVal));
+                mToolbar.getBackground().mutate().setAlpha(alpha > mToolbarAlpha ? mToolbarAlpha : alpha);
+                mStatusBarBg.getBackground().mutate().setAlpha(alpha > mToolbarAlpha ? mToolbarAlpha : alpha);
             }
         });
     }

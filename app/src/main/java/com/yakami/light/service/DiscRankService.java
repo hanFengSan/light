@@ -173,6 +173,10 @@ public class DiscRankService extends BaseService {
         return toBangumiRank(mRankList.get(pos).getDiscs());
     }
 
+    public List<DiscRank> getDiscRankList(int pos) {
+        return mRankList.get(pos).getDiscs();
+    }
+
     public void setRankList(ArrayList<TimeRankContainer> rankList) {
         mRankList = rankList;
     }

@@ -52,4 +52,6 @@
     <color name="colorOverlay">#32000000</color>
 
     <color name="translucent_text">#c8ffffff</color>
+
+    <color name="search_under_line">#C8ffffff</color>
 </resources>

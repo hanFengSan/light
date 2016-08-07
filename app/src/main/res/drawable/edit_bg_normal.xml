@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-mList xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:bottom="1dp"
@@ -11,7 +11,7 @@
 
             <stroke
             android:width="2px"
-            android:color="@color/search_edit_underline" />
+            android:color="@color/search_under_line" />
 
             <solid
                 android:width="1px"
@@ -24,4 +24,4 @@
                 android:top="5dp" />
         </shape>
     </item>
-</layer-mList>
+</layer-list>

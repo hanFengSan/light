@@ -14,12 +14,13 @@ public class Event<T> {
         TAB_SELECT,  //tablayout的选择
         SET_UPDATE_TIME, //更新时间
 
-        SET_ABOVE_NAVIGATION_BAR, //修复导航栏透明遮挡内容
+        SET_ABOVE_NAVIGATION_BAR, //修复导航栏透明遮挡内容以及不满内容一页的情况
 
         REFRESH, //通知刷新
         REFRESH_COMPLETED,  //刷新完成,关闭刷新显示
         SHOW_LOADING, //主动通知显示刷新状态
 
+        BANGUMI_PARSE_INFO,  //数据解析进度消息
         BANGUMI_SEARCH_RESULT_GET, //得到搜索结果
         BANGUMI_SEARCH_RESULT_FAIL,
         BANGUMI_NETWORK_OR_SERVER_ERROR,

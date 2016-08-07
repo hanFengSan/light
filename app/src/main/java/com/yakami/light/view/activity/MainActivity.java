@@ -5,9 +5,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.igexin.sdk.PushManager;
@@ -33,6 +38,7 @@ import com.yakami.light.bean.Version;
 import com.yakami.light.event.Event;
 import com.yakami.light.event.RxBus;
 import com.yakami.light.service.CopyService;
+import com.yakami.light.service.DiscRankService;
 import com.yakami.light.service.SettingService;
 import com.yakami.light.service.VersionService;
 import com.yakami.light.utils.IntentHelper;
@@ -65,10 +71,17 @@ public class MainActivity extends BaseTransTabMainActivity
         implements OnTabSelectListener, Drawer.OnDrawerItemClickListener {
 
     @Bind(R.id.recyclerview) RecyclerView mRecyclerView;
+    @Bind(R.id.search_layout) LinearLayout mSearchLayout;
+    @Bind(R.id.edit_search) EditText mSearchEditText;
+
     private PagerAdapter mPagerAdapter;
     private HFRankAdapter mAdapter;
     private int mScrollY; //用于记录recyclerview的滑动位置
     private Drawer mDrawer;
+
+    private Menu mMenu;
+    private boolean mIsSearchMode;
+    private String mKeyword;
 
     LinearLayoutManager mLayoutManager;
 
@@ -87,6 +100,8 @@ public class MainActivity extends BaseTransTabMainActivity
         //getui init
         PushManager.getInstance().initialize(this.getApplicationContext());
 
+        initSearch();
+
         mAdapter = new HFRankAdapter(this);
         mLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -99,6 +114,7 @@ public class MainActivity extends BaseTransTabMainActivity
                 super.onScrolled(recyclerView, dx, dy);
                 mScrollY += dy;
                 int tmp = mScrollY / 2;
+                Log.e("tmp", tmp + "");
 //                //为了避免drawables间共享状态导致锁状态问题，得先使用mutate()进行变种处理
                 mToolbar.getBackground().mutate().setAlpha(tmp > 255 ? 255 : tmp);
                 mStatusBarBg.getBackground().mutate().setAlpha(tmp > 255 ? 255 : tmp);
@@ -164,8 +180,8 @@ public class MainActivity extends BaseTransTabMainActivity
     public void onRefresh() {
         ServerAPI.getSakuraAPI()
                 .getData()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(container -> {
                     getDiscRankService().setRankList(new ArrayList<>());
                     for (RawTimeRankContainer item : container) {
@@ -193,21 +209,24 @@ public class MainActivity extends BaseTransTabMainActivity
     }
 
     /**
-     * 选择tab的响应
+     * 选择tab的响应, 显示数据
      *
      * @param position
      */
     @Override
     public void onTabSelect(int position) {
+        //避免recyclerview过短，在tab切换的时候由于长度不足，造成瞬移回顶部。不足的底部填充一个screen的高度
         setAboveNavigationBar(getScreenSize().y);
         mAdapter.clear();
-        List<BangumiRank> bangumiRankList;
+        List<BangumiRank> bangumiRankList = new ArrayList<>();
+
         if (position < getDiscRankService().getTimeRanksList().size())
-            bangumiRankList = AppManager.getDiscRankService().getBangumiRankList(position);
+            bangumiRankList = search(AppManager.getDiscRankService().getDiscRankList(position));
         else {
             //我的关注列表
-            bangumiRankList = AppManager.getDiscRankService().getWatchedBangumiRank();
+            bangumiRankList = search(AppManager.getDiscRankService().getWatchedDiscRank());
         }
+
         mAdapter.addItem(bangumiRankList);
         mAdapter.notifyDataSetChanged();
         //长按开启通知配置dialog
@@ -228,13 +247,15 @@ public class MainActivity extends BaseTransTabMainActivity
 
         AppManager.setTabPos(position);
 
-        mRecyclerView.post(() -> {
-            int tmp = mRecyclerView.computeVerticalScrollRange() - getScreenSize().y;
-            if (tmp > getScreenSize().y) {
-                setAboveNavigationBar(0);
-            } else {
-                setAboveNavigationBar(getScreenSize().y);
-            }
+        addOnRunListener(() -> {
+            mRecyclerView.post(() -> {
+                int tmp = mRecyclerView.computeVerticalScrollRange() - getScreenSize().y;
+                if (tmp > getScreenSize().y) {
+                    setAboveNavigationBar(0);
+                } else {
+                    setAboveNavigationBar(getScreenSize().y);
+                }
+            });
         });
     }
 
@@ -330,6 +351,7 @@ public class MainActivity extends BaseTransTabMainActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        mMenu = menu;
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -343,6 +365,12 @@ public class MainActivity extends BaseTransTabMainActivity
                     .putString("class", InstructionFragment.class.toString())
                     .putString("title", mRes.getString(R.string.instruction))
                     .toIntent());
+            return true;
+        }
+
+        if (id == R.id.action_search) {
+            mIsSearchMode = !mIsSearchMode;
+            switchSearchMode(mIsSearchMode, R.id.action_search);
             return true;
         }
 
@@ -385,16 +413,67 @@ public class MainActivity extends BaseTransTabMainActivity
 
     }
 
-    protected void showDialog(Version version) {
+    private void showDialog(Version version) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(mActivityContext);
         dialog.setTitle("有新版本！ v" + version.getVersion());
         dialog.setMessage(version.getIntro());
         dialog.setCancelable(true);
         dialog.setPositiveButton("更新", (dialogInterface, which) -> {
             OpenUrl(version.getUrl());
-            Tools.toast("后台下载中");
+//            Tools.toast("后台下载中");
 //            ApkUpdateUtils.download(this, version.getUrl(), getResources().getString(R.string.app_name));
         });
         dialog.show();
+    }
+
+    private void switchSearchMode(boolean isSearchMode, int id) {
+        mTitle.setVisibility(isSearchMode ? View.GONE : View.VISIBLE);
+        mSearchLayout.setVisibility(isSearchMode ? View.VISIBLE : View.GONE);
+        mMenu.getItem(2).setIcon(isSearchMode ? R.drawable.ic_close_white_24dp : R.drawable.ic_search_white_24dp);
+        if (isSearchMode) {
+            mSearchEditText.requestFocus();
+            DeviceManager.getSoftInputManager(mContext).toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        } else {
+            DeviceManager.hideSoftInput(mContext, getCurrentFocus());
+            mKeyword = "";
+            onTabSelect(AppManager.getTabPos());
+        }
+    }
+
+    private void initSearch() {
+        mSearchEditText.setOnEditorActionListener((textView, actionId, event) -> {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        reInitToolbarAlpha();
+                        mKeyword = textView.getText().toString();
+                        onTabSelect(AppManager.getTabPos());
+                        DeviceManager.hideSoftInput(mContext, getCurrentFocus());
+                        return true;
+                    }
+                    return false;
+                }
+        );
+    }
+
+    /**
+     * adpater改变时，高度若是从满一screen到不足一screen，则toolbar的渐变效果计算会出错，此方法用于重置计算
+     */
+    private void reInitToolbarAlpha() {
+        mRecyclerView.scrollToPosition(0);
+        mScrollY = 0;
+        mToolbar.getBackground().mutate().setAlpha(0);
+        mStatusBarBg.getBackground().mutate().setAlpha(0);
+    }
+
+    private List<BangumiRank> search(List<DiscRank> list) {
+        if (Tools.isAvailableStr(mKeyword)) {
+            List<DiscRank> result = new ArrayList<>();
+            for (DiscRank item : list) {
+                if (item.getName().contains(mKeyword) || item.getsName().contains(mKeyword)) {
+                    result.add(item);
+                }
+            }
+            return DiscRankService.toBangumiRank(result);
+        } else
+            return DiscRankService.toBangumiRank(list);
     }
 }

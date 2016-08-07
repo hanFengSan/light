@@ -10,9 +10,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -52,58 +49,10 @@ public class ServerAPI {
 
     public static BangumiInfoAPI getBangumiInfoAPI() {
         if (mBangumiInfoAPI == null) {
-            OkHttpClient httpClient = new OkHttpClient.Builder()
-                    .addInterceptor((Interceptor.Chain chain) -> {
-                                Request original = chain.request();
-                                String path = original.url().url().getPath();
-
-//                                if (path.contains("lain.bgm.tv")) {
-                                Request.Builder requestBuilder = original.newBuilder()
-                                        .header("Connection", "close")
-                                        .method(original.method(), original.body());
-                                Request request = requestBuilder.build();
-                                return chain.proceed(request);
-//                                }
-//                                switch (original.url().url().getPath()) {
-//                                    case "/User/Login":
-//                                        Response response = chain.proceed(chain.request());
-//                                        setCookies(response.header("Set-Cookie"));
-//                                        return response;
-//                                    case "/User/GetValidateCode":
-//                                        Response codeResponse = chain.proceed(chain.request());
-//                                        mSessionCookies = codeResponse.header("Set-Cookie");
-//                                        return codeResponse;
-//                                    case "/User/SignUp":
-//                                        Request.Builder signUpRequestBuilder = original.newBuilder()
-//                                                .header("Cookie", mSessionCookies == null ? "" : mSessionCookies)
-//                                                .method(original.method(), original.body());
-//                                        Request signUpRequest = signUpRequestBuilder.build();
-//                                        return chain.proceed(signUpRequest);
-//                                    default:
-//                                        Request.Builder requestBuilder = original.newBuilder()
-//                                                .header("Cookie", mCookies == null ? getCookies() : mCookies)
-//                                                .method(original.method(), original.body());
-//                                        Request request = requestBuilder.build();
-//                                        return chain.proceed(request);
-//                                }
-//                                if (original.url().url().getPath().equals("/User/Login")) {
-//                                    Response response = chain.proceed(chain.request());
-//                                    setCookies(response.header("Set-Cookie"));
-//                                    return response;
-//                                } else {
-//                                    Request.Builder requestBuilder = original.newBuilder()
-//                                            .header("Cookie", mCookies == null ? getCookies() : mCookies)
-//                                            .method(original.method(), original.body());
-//                                    Request request = requestBuilder.build();
-//                                    return chain.proceed(request);
-//                                }
-                            }
-                    ).build();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(baiduHost)
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(httpClient)
                     .build();
             mBangumiInfoAPI = retrofit.create(BangumiInfoAPI.class);
         }
@@ -180,7 +129,7 @@ public class ServerAPI {
                                                  @Query("wd") String keyword);
 
         @GET
-        Observable<ResponseBody> getBGMResult(@Url String url);
+        Observable<ResponseBody> getCutomUrl(@Url String url);
 
         @GET
         @Streaming

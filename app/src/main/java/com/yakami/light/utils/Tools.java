@@ -1,5 +1,6 @@
 package com.yakami.light.utils;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.StyleSpan;
@@ -254,5 +255,22 @@ public class Tools {
         }
         return false;
     }
+
+    public static boolean isGrey(int color) {
+
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        int rgDiff = r - g;
+        int rbDiff = r - b;
+
+        int tolerance = 100;
+
+        if (rgDiff > tolerance || rgDiff < -tolerance)
+            if (rbDiff > tolerance || rbDiff < -tolerance)
+                return false;
+        return true;
+    }
+
 
 }

@@ -31,7 +31,7 @@
             android:layout_below="@id/progress_bar"
             android:layout_centerInParent="true"
             android:padding="10dp"
-            android:text="@string/load_failed"
+            android:text="@string/load_failed_touch_retry"
             android:visibility="gone"/>
 
         <FrameLayout

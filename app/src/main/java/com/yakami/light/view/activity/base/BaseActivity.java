@@ -17,6 +17,10 @@ import com.yakami.light.R;
 import com.yakami.light.utils.IntentHelper;
 import com.yakami.light.utils.Tools;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import nucleus.view.NucleusActivity;
@@ -32,6 +36,9 @@ public abstract class BaseActivity extends NucleusActivity {
     protected Resources mRes;
     protected Context mContext;
     protected Context mActivityContext;
+
+    private List<OnRunListener> mOnRunListenerList = new ArrayList<>();
+    protected boolean mIsActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,5 +132,38 @@ public abstract class BaseActivity extends NucleusActivity {
         Uri content_url = Uri.parse(url);
         intent.setData(content_url);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mIsActive = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mIsActive = true;
+
+        for (Iterator it =mOnRunListenerList.iterator(); it.hasNext();) {
+            OnRunListener listener =(OnRunListener)it.next();
+            listener.onRun();
+            it.remove();
+        }
+    }
+
+    /**
+     * 用于添加一些在activity run状态下执行的操作
+     * @param listener
+     */
+    protected void addOnRunListener(OnRunListener listener) {
+        if (mIsActive) {
+            listener.onRun();
+        } else
+            mOnRunListenerList.add(listener);
+    }
+
+    protected interface OnRunListener {
+        void onRun();
     }
 }

@@ -39,6 +39,7 @@ public class DominantColorUtils {
         return true;
     }
 
+
     /**
      * Calculates the dominat color of a bitmap
      * WARNING: Slow

@@ -14,6 +14,6 @@
         android:layout_height="match_parent"
         android:theme="@style/ListEdgeOverlayTheme"/>
 
-    <include layout="@layout/app_bar_transparent"/>
+    <include layout="@layout/app_bar_transparent_search"/>
 
 </android.support.design.widget.CoordinatorLayout>
