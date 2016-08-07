@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,6 +46,7 @@ import com.yakami.light.view.activity.base.BaseTransTabMainActivity;
 import com.yakami.light.view.fragment.AboutFragment;
 import com.yakami.light.view.fragment.InstructionFragment;
 import com.yakami.light.view.fragment.RankDialogFragment;
+import com.yakami.light.view.fragment.SettingsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,8 +114,7 @@ public class MainActivity extends BaseTransTabMainActivity
                 super.onScrolled(recyclerView, dx, dy);
                 mScrollY += dy;
                 int tmp = mScrollY / 2;
-                Log.e("tmp", tmp + "");
-//                //为了避免drawables间共享状态导致锁状态问题，得先使用mutate()进行变种处理
+                //为了避免drawables间共享状态导致锁状态问题，得先使用mutate()进行变种处理
                 mToolbar.getBackground().mutate().setAlpha(tmp > 255 ? 255 : tmp);
                 mStatusBarBg.getBackground().mutate().setAlpha(tmp > 255 ? 255 : tmp);
             }
@@ -312,6 +311,8 @@ public class MainActivity extends BaseTransTabMainActivity
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().withIdentifier(7).withName(mRes.getString(R.string.remove_all_notification)).withOnDrawerItemClickListener(this),
                         new DividerDrawerItem(),
+                        new PrimaryDrawerItem().withIdentifier(11).withName(R.string.other_settings).withOnDrawerItemClickListener(this),
+                        new DividerDrawerItem(),
                         new PrimaryDrawerItem().withIdentifier(8).withName(R.string.share).withOnDrawerItemClickListener(this),
                         new PrimaryDrawerItem().withIdentifier(9).withName(R.string.instruction).withOnDrawerItemClickListener(this),
                         new PrimaryDrawerItem().withIdentifier(10).withName(R.string.about).withOnDrawerItemClickListener(this))
@@ -343,6 +344,12 @@ public class MainActivity extends BaseTransTabMainActivity
                 startActivity(IntentHelper.newInstance(mActivityContext, SingleFragmentActivity.class)
                         .putString("class", AboutFragment.class.toString())
                         .putString("title", mRes.getString(R.string.about))
+                        .toIntent());
+                return true;
+            case 11: //other settings
+                startActivity(IntentHelper.newInstance(mActivityContext, SingleFragmentActivity.class)
+                        .putString("class", SettingsFragment.class.toString())
+                        .putString("title", mRes.getString(R.string.other_settings))
                         .toIntent());
                 return true;
         }

@@ -128,4 +128,17 @@
     <string name="copy_visible_item">复制可见项的排名</string>
 
     <string name="search_hint">请输入搜索关键词</string>
+
+    <string name="other_settings">其他设置</string>
+
+    <string name="fly_scale">爆上比例：</string>
+    <string name="fly_scale_intro">计算公式：(前排名 - 现排名) / 前排名 = 变化比例，当变化比例 >= 爆上比例，为爆上事件</string>
+    <string name="dive_scale">跳水比例：</string>
+    <string name="dive_scale_intro">计算公式：(现排名 - 前排名) / 前排名 = 变化比例，当变化比例 >= 跳水比例，为跳水事件</string>
+    <string name="fish_line">杂鱼线：</string>
+    <string name="fish_line_intro">当排名低于杂鱼线时，将不会推送</string>
+    <string name="top_line">登顶线：</string>
+    <string name="top_line_intro">当排名 >= 登顶线，且前排名不等于现排名时，为爆上事件</string>
+    <string name="setting_ok">设置成功</string>
+
 </resources>

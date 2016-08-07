@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--爆上比例-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fly_scale"
+                    android:textColor="@color/PeterRiver"
+                    android:textSize="16sp"/>
+
+                <com.rey.material.widget.Spinner
+                    android:id="@+id/fly_spinner"
+                    style="@style/Material.Widget.Spinner"
+                    spn_dividerColor="@color/split_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/fly_scale_intro"
+                android:textColor="@color/unselected_grey"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <!--跳水比例-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dive_scale"
+                    android:textColor="@color/PeterRiver"
+                    android:textSize="16sp"/>
+
+                <com.rey.material.widget.Spinner
+                    android:id="@+id/dive_spinner"
+                    style="@style/Material.Widget.Spinner"
+                    spn_dividerColor="@color/split_grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rd_style="@style/Material.Drawable.Ripple.Wave"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/dive_scale_intro"
+                android:textColor="@color/unselected_grey"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+        <!--杂鱼线-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fish_line"
+                    android:textColor="@color/PeterRiver"
+                    android:textSize="16sp"/>
+
+                <com.rey.material.widget.EditText
+                    android:id="@+id/fish_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Input with label"
+                    android:inputType="number"
+                    app:et_dividerColor="@color/unselected_grey"
+                    app:et_inputId="@+id/fish_line_input"
+                    app:et_supportMode="none"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/fish_line_intro"
+                android:textColor="@color/unselected_grey"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <!--登顶线-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top_line"
+                    android:textColor="@color/PeterRiver"
+                    android:textSize="16sp"/>
+
+                <com.rey.material.widget.EditText
+                    android:id="@+id/top_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Input with label"
+                    android:inputType="number"
+                    app:et_dividerColor="@color/unselected_grey"
+                    app:et_inputId="@+id/top_line_input"
+                    app:et_supportMode="none"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/top_line_intro"
+                android:textColor="@color/unselected_grey"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="50dp">
+
+            <com.rey.material.widget.Button
+                android:id="@+id/button_completed"
+                style="@style/Material.Drawable.Ripple.Touch"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/ok"
+                app:rd_enable="true"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -27,7 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.yakami.light.bean.NotificationProfile.CACHE_NAME;
-import static com.yakami.light.bean.NotificationProfile.FISH_LINE;
 import static com.yakami.light.bean.NotificationProfile.SWITCH_DIVE;
 import static com.yakami.light.bean.NotificationProfile.SWITCH_FLY;
 import static com.yakami.light.bean.NotificationProfile.SWITCH_IGNORE_FISH;
@@ -73,7 +72,7 @@ public class NotificationService extends BaseService {
             for (NotificationItem tmp : list) {
                 if (discItem.getId() == tmp.getId()) {
                     if (tmp.isUpdate() || tmp.isFly() || tmp.isDive() || tmp.isTop() || tmp.isWatched()) {
-                        if (!(tmp.isIgnoreFish() && discItem.getCurrentRank() > FISH_LINE)) {
+                        if (!(tmp.isIgnoreFish() && discItem.getCurrentRank() > mProfile.getFishLine())) {
                             result.add(new DiscNotificationResult(discItem, tmp));
                         }
                         list.remove(tmp);
@@ -167,6 +166,42 @@ public class NotificationService extends BaseService {
             notificationManager.notify(mNotifyID, notification);
             mNotifyID++;
         }
+    }
+
+    public void setList(ArrayList<NotificationItem> list) {
+        mProfile.setList(list);
+    }
+
+    public int getFishLine() {
+        return mProfile.getFishLine();
+    }
+
+    public void setFishLine(int fishLine) {
+        mProfile.setFishLine(fishLine);
+    }
+
+    public float getFlyScale() {
+        return mProfile.getFlyScale();
+    }
+
+    public void setFlyScale(float flyScale) {
+        mProfile.setFlyScale(flyScale);
+    }
+
+    public float getDiveScale() {
+        return mProfile.getDiveScale();
+    }
+
+    public void setDiveScale(float diveScale) {
+        mProfile.setDiveScale(diveScale);
+    }
+
+    public int getTop() {
+        return mProfile.getTop();
+    }
+
+    public void setTop(int top) {
+        mProfile.setTop(top);
     }
 
     public static class NotificationText {

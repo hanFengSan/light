@@ -7,7 +7,6 @@ import com.yakami.light.bean.CommonMsg;
 import com.yakami.light.bean.DiscNotificationResult;
 import com.yakami.light.bean.DiscRank;
 import com.yakami.light.bean.NotificationItem;
-import com.yakami.light.bean.NotificationProfile;
 import com.yakami.light.bean.ServerResponse;
 import com.yakami.light.bean.Version;
 import com.yakami.light.service.base.BaseService;
@@ -129,6 +128,7 @@ public class PushService extends BaseService {
     private TitleHelper getContentAndTitle(List<DiscNotificationResult> aliveList) {
         mContent = "";
         TitleHelper titleHelper = new TitleHelper();
+        NotificationService service = AppManager.getNotificationService();
         //判断是否达到通知条件
         for (DiscNotificationResult item : aliveList) {
             NotificationItem ni = item.getNotificationItem();
@@ -141,21 +141,21 @@ public class PushService extends BaseService {
             }
             //爆上
             if (ni.isFly() && dr.getPreRank() != 0) {
-                if ((dr.getCurrentRank() / (dr.getPreRank() * 1.0f)) < NotificationProfile.FLY_SCALE) {
+                if (((dr.getPreRank() - dr.getCurrentRank()) / (dr.getPreRank() * 1.0f)) >= service.getFlyScale()) {
                     isQualified = true;
                     titleHelper.pushTitleCandidate(dr.getsName(), TitleHelper.TYPE_FLY, dr.getCurrentRank() / (dr.getPreRank() * 1.0f));
                 }
             }
             //跳水
             if (ni.isDive() && dr.getPreRank() != 0) {
-                if ((dr.getCurrentRank() / (dr.getPreRank() * 1.0f)) < NotificationProfile.DIVE_SCALE) {
+                if (((dr.getCurrentRank() - dr.getPreRank()) / (dr.getPreRank() * 1.0f)) >= service.getDiveScale()) {
                     isQualified = true;
                     titleHelper.pushTitleCandidate(dr.getsName(), TitleHelper.TYPE_DIVE, dr.getCurrentRank() / (dr.getPreRank() * 1.0f));
                 }
             }
             //登顶
             if (ni.isTop()) {
-                if (dr.getCurrentRank() == NotificationProfile.TOP && dr.getCurrentRank() != dr.getPreRank()) {
+                if (dr.getCurrentRank() <= service.getTop() && dr.getCurrentRank() != dr.getPreRank()) {
                     isQualified = true;
                     titleHelper.pushTitleCandidate(dr.getsName(), TYPE_TOP, 0);
                 }

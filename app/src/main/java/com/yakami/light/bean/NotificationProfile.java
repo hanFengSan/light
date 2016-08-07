@@ -11,10 +11,10 @@ import java.util.ArrayList;
 public class NotificationProfile extends Entity {
 
     public static final String CACHE_NAME = "NOTIFICATION_PROFILE";
-    public static final int FISH_LINE = 500; //杂鱼线
-    public static final float FLY_SCALE = 0.75f; //爆上比例
-    public static final float DIVE_SCALE = 1.25f; //跳水比例
-    public static final float TOP = 1; //登顶
+    private int fishLine = 500; //杂鱼线
+    private float flyScale = 0.25f; //爆上比例
+    private float diveScale = 0.25f; //跳水比例
+    private int top = 1; //登顶
 
     private ArrayList<NotificationItem> mList = new ArrayList<>();
 
@@ -32,5 +32,37 @@ public class NotificationProfile extends Entity {
 
     public void setList(ArrayList<NotificationItem> list) {
         this.mList = list;
+    }
+
+    public int getFishLine() {
+        return fishLine;
+    }
+
+    public void setFishLine(int fishLine) {
+        this.fishLine = fishLine;
+    }
+
+    public float getFlyScale() {
+        return flyScale;
+    }
+
+    public void setFlyScale(float flyScale) {
+        this.flyScale = flyScale;
+    }
+
+    public float getDiveScale() {
+        return diveScale;
+    }
+
+    public void setDiveScale(float diveScale) {
+        this.diveScale = diveScale;
+    }
+
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
     }
 }

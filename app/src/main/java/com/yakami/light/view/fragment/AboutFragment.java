@@ -26,6 +26,7 @@ public class AboutFragment extends BaseFragment {
         ButterKnife.bind(this,view);
 
         mAbout.setText("版本: " + BuildConfig.VERSION_NAME + "\n" + mRes.getString(R.string.author));
+        mAbout.append("\ngithub地址：https://github.com/hanFengSan/light");
         return view;
     }
 }
