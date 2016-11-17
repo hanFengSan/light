@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="D:\YakamiStudio\android\Uranus-light\hellocharts\assets"/><source path="D:\YakamiStudio\android\Uranus-light\hellocharts\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\YakamiStudio\android\Uranus-light\hellocharts\src\release\assets"/></dataSet></merger>
